@@ -3,6 +3,8 @@ const Category = require('../controller/category');
 
 router.get('/all', Category.getItems);
 router.post('/', Category.setItems);
-router.post('/add', Category.addItem);
+router.post('/addItem', Category.addItem);
+router.get('/myItem', Category.getMyItems);
+router.post('/delete', Category.deleteItem);
 
 module.exports = router;

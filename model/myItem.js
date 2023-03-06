@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-const ItemSchema = new mongoose.Schema(
+const Schema = mongoose.Schema;
+
+const myItem = new Schema(
     {
         Name: {
             type: String,
@@ -24,8 +26,12 @@ const ItemSchema = new mongoose.Schema(
         description: {
             type: String,
         },
+        count : {
+            type: Number,
+            default: 1
+        },
         userId: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: 'User'
         }
     },
@@ -34,4 +40,4 @@ const ItemSchema = new mongoose.Schema(
     }
 );
 
-module.exports = mongoose.model("Shop", ItemSchema);
+module.exports = mongoose.model("MyItem", myItem);
