@@ -95,6 +95,7 @@ exports.deleteItem = async (req, res) => {
             Type: req.body.Type,
             Image: req.body.Image
         })
+        if(data)
         MyItem
             .find()
             .then(result => res.send(result))

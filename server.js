@@ -1,7 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const route = require('./router/shop');
+const shop = require('./router/shop');
+const admin = require('./router/admin');
 const cors = require('cors');
 
 const db = require('./keys/config').mongoURI;
@@ -31,7 +32,8 @@ mongoose.connect(db)
 
 // app
 
-app.use('/shop', route);
+app.use('/shop', shop);
+app.use('/admin', admin);
 
 const port = process.env.PORT || 8000;
 
