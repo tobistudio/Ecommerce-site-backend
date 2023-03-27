@@ -90,15 +90,17 @@ exports.getMyItems = async (req, res) => {
 
 exports.deleteItem = async (req, res) => {
     try {
-        let data = await MyItem.findOneAndDelete({
+        let data = await Shop.findOneAndDelete({
             Name: req.body.Name,
-            Type: req.body.Type,
             Image: req.body.Image
         })
-        if(data)
-        MyItem
+        if(data) {
+            console.log(data);
+            Shop
             .find()
             .then(result => res.send(result))
+        }   
+        
     } catch (error) {
         console.log(error);
     }
