@@ -63,7 +63,7 @@ exports.addItem = async (req, res) => {
         if (resu) {
             let data = await MyItem.findOneAndUpdate({ _id: resu._id }, { count: resu.count + 1 });
 
-            if(data) {
+            if (data) {
                 data.count += 1;
                 console.log(data);
                 res.send(data);
@@ -94,15 +94,28 @@ exports.deleteItem = async (req, res) => {
             Name: req.body.Name,
             Image: req.body.Image
         })
-        if(data) {
-            console.log(data);
+        if (data) {
             Shop
-            .find()
-            .then(result => res.send(result))
-        }   
-        
+                .find()
+                .then(result => res.send(result))
+        }
+
     } catch (error) {
         console.log(error);
     }
 }
 
+exports.updateItem = async (req, res) => {
+    try {
+        let data = await Shop.findOneAndUpdate({
+            Name: req.body.Details
+        }, req.body);
+        if (data) {
+            Shop
+                .find()
+                .then(result => res.send(result))
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
