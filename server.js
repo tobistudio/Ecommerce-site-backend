@@ -12,10 +12,6 @@ const db = require('./keys/config').mongoURI;
 
 const app = express();
 
-app.get('/', (req, res) => {
-    res.json({ msg: "success" })
-})
-
 var corsOptions = {
     origin: "*",
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
@@ -27,6 +23,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(bodyParser.json())
+
+
+app.use(express.static(path.join(__dirname, 'build')))
 
 // Mongodb connection
 mongoose.connect(db)
@@ -48,8 +47,6 @@ app.post('/callback', function (req, res) {
 
 app.use('/shop', shop);
 app.use('/admin', admin);
-
-app.use(express.static(path.join(__dirname, 'build')))
 
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'build', 'index.html'))
